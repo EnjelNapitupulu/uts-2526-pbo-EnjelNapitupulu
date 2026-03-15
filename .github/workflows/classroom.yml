@@ -198,25 +198,17 @@ jobs:
 # REPORT
 # ------------------------------------------------
 
-- name: Autograding Reporter
-  uses: classroom-resources/autograding-grading-reporter@v1
-  env:
-    T01_01_RESULTS: "${{steps.t01-01-basic-account.outputs.result}}"
-    T01_02_RESULTS: "${{steps.t01-02-many-accounts.outputs.result}}"
-    T02_01_RESULTS: "${{steps.t02-01-deposit-withdraw.outputs.result}}"
-    T02_02_RESULTS: "${{steps.t02-02-withdraw-insufficient.outputs.result}}"
-    T03_01_RESULTS: "${{steps.t03-01-transfer-basic.outputs.result}}"
-    T03_02_RESULTS: "${{steps.t03-02-transfer-invalid.outputs.result}}"
-    T04_01_RESULTS: "${{steps.t04-01-history-basic.outputs.result}}"
-    T04_02_RESULTS: "${{steps.t04-02-sorting.outputs.result}}"
-  with:
-    runners: |
-      t01-01-basic-account
-      t01-02-many-accounts
-      t02-01-deposit-withdraw
-      t02-02-withdraw-insufficient
-      t03-01-transfer-basic
-      t03-02-transfer-invalid
-      t04-01-history-basic
-      t04-02-sorting
-    token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        T01_01_RESULTS: "${{steps.t01-01-basic-account.outputs.result}}"
+        T01_02_RESULTS: "${{steps.t01-02-many-accounts.outputs.result}}"
+        T02_01_RESULTS: "${{steps.t02-01-deposit-withdraw.outputs.result}}"
+        T02_02_RESULTS: "${{steps.t02-02-withdraw-insufficient.outputs.result}}"
+        T03_01_RESULTS: "${{steps.t03-01-transfer-basic.outputs.result}}"
+        T03_02_RESULTS: "${{steps.t03-02-transfer-invalid.outputs.result}}"
+        T04_01_RESULTS: "${{steps.t04-01-history-basic.outputs.result}}"
+        T04_02_RESULTS: "${{steps.t04-02-sorting.outputs.result}}"
+      with:
+        runners: t01-01-basic-account,t01-02-many-accounts,t02-01-deposit-withdraw,t02-02-withdraw-insufficient,t03-01-transfer-basic,t03-02-transfer-invalid,t04-01-history-basic,t04-02-sorting
+        token: ${{ secrets.GITHUB_TOKEN }}
