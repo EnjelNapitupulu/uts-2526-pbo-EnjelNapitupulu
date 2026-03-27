@@ -1,15 +1,41 @@
-package academic.driver;
+package fintech.driver;
+
+import java.util.Scanner;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import fintech.model.Account;
 
 /**
- * @author NIM Nama
- * @author NIM Nama
+ * @author 12S24056 Enjel Ayuti Napitupulu
+ * @author 12S24056 Enjel Ayuti Napitupulu
  */
 public class Driver1 {
 
     public static void main(String[] _args) {
+        Scanner scanner = new Scanner(System.in);
+        Map<String, Account> accounts = new LinkedHashMap<>();
 
-        // codes
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.equals("---")) {
+                break;
+            }
+            String[] parts = line.split("#");
+            String command = parts[0];
 
+            if (command.equals("create-account")) {
+                String name = parts[1];
+                String username = parts[2];
+                if (!accounts.containsKey(username)) {
+                    accounts.put(username, new Account(name, username));
+                }
+            }
+        }
+
+        for (Account acc : accounts.values()) {
+            System.out.println(acc.getUsername() + "|" + acc.getName() + "|" + acc.getBalance());
+        }
+
+        scanner.close();
     }
-
 }
